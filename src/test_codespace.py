@@ -15,7 +15,7 @@ import yara
 # """
 
 testrule = """
-rule interested
+rule interested : tag1
 {
     meta:
         description = "This is just an example,coinminer config extra"
@@ -29,4 +29,15 @@ rule interested
 rule = yara.compile(source=testrule)
 filecontent = open("/workspaces/helloworld/README.md", "rb").read()
 matches = rule.match(data=filecontent)
-print(matches)
+# print(type(matches))
+# print(matches[0])
+# print(type(matches[0]))
+print(matches[0].meta)
+print(matches[0].namespace)
+print(matches[0].rule)
+print(matches[0].strings)
+print(matches[0].tags)
+
+
+
+
